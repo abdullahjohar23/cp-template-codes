@@ -1,0 +1,76 @@
+#include <bits/stdc++.h>
+#include <ext/pb_ds/assoc_container.hpp>
+#include <ext/pb_ds/tree_policy.hpp>
+
+using namespace std;
+using namespace __gnu_pbds;
+
+vector <string> allSubs;
+
+// Find all subsequences
+void printSubsequence (string input, string output) {
+    if (input.empty()) {
+        allSubs.push_back(output);
+        return;
+    }
+    printSubsequence(input.substr(1), output + input[0]);
+    printSubsequence(input.substr(1), output);
+}
+
+int main()
+{
+    ios::sync_with_stdio(false);
+    cin.tie(NULL);
+    cout.tie(NULL);
+
+    string s, output = "";
+    cin >> s;
+
+    printSubsequence(s, output);
+
+    for (int i = 0; i < allSubs.size(); i++) {
+        cout << allSubs[i] << endl;
+    }
+
+    return 0;
+}
+
+/*
+
+Input
+abcde
+
+Output
+abcde
+abcd
+abce
+abc
+abde
+abd
+abe
+ab
+acde
+acd
+ace
+ac
+ade
+ad
+ae
+a
+bcde
+bcd
+bce
+bc
+bde
+bd
+be
+b
+cde
+cd
+ce
+c
+de
+d
+e
+
+*/

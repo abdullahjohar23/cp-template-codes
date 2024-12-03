@@ -1,0 +1,485 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+// #define vi vector <int> [We can use this for vector as symbolic constant or you can make a tyoedef which is given below in line 5]
+// typedef vector <int> vi;
+// use either #define or typedef, not both
+
+// #define sz(n) (int)(n).size()
+// typedef (int)(n).size() sz(n); [Symbolic constant to shorten size code in a loop. If we write arr, this macro will overwrite arr as n]
+
+int main()
+{
+    // Here we go with the STL - vector:
+
+    // Vector is one kinda array
+    // At first its index will remain 0
+    // As soon as you start adding (aka "push_back()") any number, its index will be increasing by 1 for each
+    // First number will go to the 0th index, next number will go to the 1st index, then the next number will go to the 2nd index .... so on and so forth
+    // As soon as  you remove (aka "pop_back()") any number, its index will be decreasing by 1 for each
+    // pop_back() will remove numbers from backward
+    /**
+        Syntax of a vector
+        1. vector <datatype> variableNameForVector; [If you want to keep the vector size, it's called keeping the vector Dynamic]
+        2. vector <datatype> variableNameForVector(size) [If you want to make a specific size for the vector which we usually don't do]
+        Note: data types can be int, long long, float, double, char (char for strings)
+    */
+
+    //-----------------------------------------------------------------------
+    // Basics of Vector
+    vector <int> vect1;
+
+    cout << "Initial size of the vector: " << (int)vect1.size() << endl; // It will print 0, cause initially a vector has 0 size
+
+    // adding numbers to vect1
+    vect1.push_back(26); // [26] size 1
+    vect1.push_back(23); // [26, 23] size 2
+    vect1.push_back(19); // [26, 23, 19] size 3
+    vect1.push_back(49); // [26, 23, 19, 49] size 4
+    vect1.push_back(13); // [26, 23, 19, 49, 13] size 5
+    /** This is the way we add numbers to a vector
+        Or you can just run a loop to get as many numbers as you want
+    */
+
+    // Printing the vect1 (Normally)
+    cout << "\nAfter push_back() vect1 is (Normally): ";
+    for(int i = 0; i < (int)vect1.size(); i++){
+        cout <<  vect1[i] << ", ";
+    }
+
+    // Printing the vect1 (Using auto)
+    cout << "\nAfter push_back() vect1 is (Using auto): ";
+    for(auto el:vect1){
+        cout << el << " " << endl;
+    }
+
+    cout << "\nNow the size of the vect1 is: " << (int)vect1.size() << endl;
+    /** The reason we used (int) for typecasting, is .size() returns unsigned integer value.
+        So we just typecast it into signed integer.
+        It's not necessary but sometimes it can give you bugs, so it's a good practice.
+    */
+
+    vect1.pop_back(); // This will remove the last numbers of the vector
+    vect1.pop_back(); // This will remove the second last number of the vector
+
+    cout << "\n\nAfter pop_back() vect1 is now: ";
+    for(int i = 0; i < vect1.size(); i++){
+        cout << vect1[i] << ", ";
+    }
+    cout << "\n\n" << endl;
+
+
+
+
+
+
+    //-----------------------------------------------------------------------
+    // Initialization of a vector
+
+    vector <int> vect2(5, 10);
+    /** here 5 is a specific size for the vector
+        and 10 is initial values for all indexes, it's by default 0
+        If we do this, first 5 indexes' value will be 10 and if we push_back() any number, the number will add on index 6 and so on
+        For instance, if we push_back(20), the final vector will be [10, 10, 10, 10, 10, 20]
+    */
+
+    // Printing vect2
+    cout << "Vect2 is: ";
+    for(int i = 0; i < vect2.size(); i++){
+        cout << vect2[i] << ", ";
+    }
+    cout << "\n\n" << endl;
+
+
+
+
+
+
+    //-----------------------------------------------------------------------
+    // Creating a vector according to a user's inputs
+
+    vector <int> vect3;
+    int n, x; // n is the size for the vector and x is for vector numbers
+    cout << "\n\nEnter the vector size fro vect3: ";
+    cin >> n;
+
+    // Taking inputs from user for a vector
+    for(int i = 0; i < n; i++){
+        cout << "Enter vect3[" << i << "]: ";
+        cin >> x;
+        vect3.push_back(x);
+    }
+
+    // Printing the vector that user has inputed
+    cout << "\nUser's vector numbers are given below (it's vect3): ";
+    for(int i = 0; i < n; i++){
+        cout << vect3[i] << ", ";
+    }
+    cout << "\n\n" << endl;
+
+
+
+
+
+
+    //-----------------------------------------------------------------------
+    // Copying a vector
+
+    vector <int> vect4(10, 3);
+    vect4 = vect3; // It's that simple to copy another vector to a current vector
+
+    // Printing the copied vector (vect4)
+    cout << "\nNow the copied vector (vect4) is same as the upper one (vect3): ";
+    for(int i = 0; i < n; i++){
+        cout << vect4[i] << ", ";
+    }
+    cout << "\n\n" << endl;
+
+
+
+
+
+
+    //-----------------------------------------------------------------------
+    // Playing with some methods
+
+    // front() and back()
+    cout << "\nThe first number of vector 4 is: " << vect4.front() << endl; // This prints the first number of the vector
+    cout << "The  last number of vector 4 is: " << vect4.back() << endl;  // This prints the  last number of the vector
+    vect4.front() = 50; // You can change the value by doing this. You can do it for back() too
+
+    // resize()
+    cout << "\nThe size of vector 4 is                   : " << (int)vect4.size() << endl;
+    vect4.resize(10);
+    cout << "The size of vector 4 after resizing is now: " << (int)vect4.size() << endl; // If we run vector 4 now, rest of the numbers will be 0
+
+    // take a size less than 10 and take inputs and run this loop to see that rest of the numbers will be 0
+    cout << "\nAfter resizing, the whole vector is: ";
+    for(int i = 0; i < (int)vect4.size(); i++){
+        cout << vect4[i] << ", ";
+    }
+    cout << "\nFirst number of this vector has become " << vect4.front() << "\nBecause we changed it into vect4.front() = 50;" << endl;
+    cout << "\n\n" << endl;
+
+
+
+
+
+
+    //-----------------------------------------------------------------------
+    // Printing a vector with iterator
+    // Iterator is a one kinda pointer
+
+    /** Syntax of an iterator
+        vector <datatype> variableNameForVector;
+        vector <datatype> :: iterator iteratorName;
+
+        Note: iterator syntax is same for other containers, for instance -
+              map <datatype, datatype> variableNameForMap;
+              map <datatype, datatype> :: iterator iteratorName;
+
+        Note: vector <int> variableNameForVector1, variableNameForVector2;
+              vector <int> :: iterator iteratorName1;
+
+              vector <string> variableNameForVector3;
+              vector <string> :: iterator iteratorName2;
+              [Now "iteratorName" can iterate both variableNameForVector1 and variableNameForVector2 But not the variableNameForVector3. Cause it has different datatype]
+    */
+    vector <int> vect5; // vector declaration
+    vector <int> :: iterator v5it; // iterator declation
+
+    // assigning numbers to vect5
+    vect5.push_back(1);
+    vect5.push_back(2);
+    vect5.push_back(3);
+    vect5.push_back(4);
+    vect5.push_back(5);
+
+    // "begin()" will give you the address of the first number
+    cout << "\nUsing method the first number of vect5 is   : " << vect5.front() << endl;
+    cout << "Using iterator the first numbers of vect5 is: " << *(vect5.begin()) << endl; // This will print the first number of any vector. You cant ignore * sign, cause begin() returns an iterator
+
+    // "end()" will give you the address of the number after the last number. So "end() - 1" will give you the address of the last number
+    cout << "\nUsing method the last number of vect5 is   : " << vect5.back() << endl;
+    cout << "Using iterator the last numbers of vect5 is: " << *(vect5.end() - 1) << endl; // This will print the first number of any vector. You cant ignore * sign, cause begin() returns an iterator
+
+
+    // printing the first value of vect5 using iterator
+    v5it = vect5.begin();
+    cout << "Printing the first number of vect5 using iterator variable: " << *v5it << endl;
+
+    // Printing a vector with iterator
+    cout << "\nPrinting vector 5 using iterator: ";
+    for(v5it = vect5.begin(); v5it < vect5.end(); v5it++){
+        cout << *v5it << ", ";
+    }
+    cout << "\n\n" << endl;
+
+
+
+
+
+
+    //-----------------------------------------------------------------------
+    // removing a position from a vector (For example: vect5 = [1, 2, 3, 4, 5])
+
+    // Suppose from vect5, we wanna remove 3 (third element of the vector)
+
+    vect5.erase(vect5.begin() + 2); // this will erase the position and so the element will be erased too and shift rest of the elements after it to the left by 1 each
+    // "vect5.erase(vect5.end() - 3)" and "vect5.erase(vect5.begin() + 2)" means the same (for this example)
+
+    // Printing a vect5 after removing an element
+    cout << "\nPrinting vect5 after removing an element: ";
+    for(int i = 0; i < (int)vect5.size(); i++){
+        cout << vect5[i] << ", "; // this will print [1, 2, 4, 5] (which was [1, 2, 3, 4, 5] before removing third number)
+    }
+    cout << "\n\n" << endl;
+
+
+
+
+
+
+    //-----------------------------------------------------------------------
+    // find out an element and erase
+
+    // vector.find() returns an iterator
+
+    // Let's make vect6 now
+    vector <int> vect6;
+    vector <int> :: iterator v6it;
+
+    // assigning numbers to vect6
+    vect6.push_back(10); // index 0, address  8, vect6.begin()     or vect6.end() - 7 (suppose the addresses, they are not for real)
+    vect6.push_back(20); // index 1, address  9, vect6.begin() + 1 or vect6.end() - 6
+    vect6.push_back(30); // index 2, address 10, vect6.begin() + 2 or vect6.end() - 5
+    vect6.push_back(40); // index 3, address 11, vect6.begin() + 3 or vect6.end() - 4
+    vect6.push_back(50); // index 4, address 12, vect6.begin() + 4 or vect6.end() - 3
+    vect6.push_back(60); // index 5, address 13, vect6.begin() + 5 or vect6.end() - 2
+    vect6.push_back(70); // index 6, address 14, vect6.begin() + 6 or vect6.end() - 1
+                         //                                           vect6.end()
+
+    // suppose we wanna remove the number 30
+
+    v6it = find(vect6.begin(), vect6.end(), 30);
+    // It means, this will go through first number (vect6.begin()) to last number (vect6.end() - 1) and will find 30. Now v6it has the address of 30 as we said in line 240 that find() returns an iterator
+    // Suppose you wanna find 30 in certain index (from index 1 to 4) then you gotta find from index 1 to index 5 cause it checks 'second parameter - 1', so you can simply do (vect6.begin() + 1, vect6.begin() + 5, 30) or (vect6.begin() + 1, vect6.end() - 2, 30)
+
+    cout << "The index of 30 is: " << v6it - vect6.begin() << endl; // this will print out 2, as the index of 30 is 2
+    // the reason that it's printing 2 is, we are subtracting address of 30 (suppose 10) from address of the first number or the 0-th index number (suppose 8). So 10 - 8 = 2, so now we can simply erase the index 2
+    //vect6.erase(vect6.begin() + 'subtracted index'); here subtracted index is "v6it - vect6.begin()"
+    // if the number you're finding doesn't exist in the vector, it will return "vector.end()", for this case it's "vect6.end()" which is eventually the size of the vector
+
+    cout << "\n\n" << endl;
+
+
+
+
+
+
+    //-----------------------------------------------------------------------
+    // reverse a certain portion of a vector (You ca reverse the whole vector actually. For practice we're gonna just reverse a certain portion)
+
+    // For example, we're gonna reverse from 1st to 4th index
+    reverse(vect6.begin() + 1, vect6.end() - 2);
+
+    // Printing a vect6 after reversing 20 to 50 according to the example
+    cout << "\nPrinting vect6 after reversing 20 to 50 according to the example: ";
+    for(int i = 0; i < (int)vect6.size(); i++){
+        cout << vect6[i] << ", "; // this suppose to print [10, 50, 40, 30, 20, 60, 70]
+    }
+    cout << "\n\n" << endl;
+
+
+
+
+
+
+    //-----------------------------------------------------------------------
+    // Inserting a number in a vector
+
+    // let's create another vector
+
+    vector <int> vect7;
+    vect7.push_back(10); // index 0, address  8, vect7.begin()     or vect7.end() - 7 (suppose the addresses, they are not for real)
+    vect7.push_back(20); // index 1, address  9, vect7.begin() + 1 or vect7.end() - 6
+    vect7.push_back(30); // index 2, address 10, vect7.begin() + 2 or vect7.end() - 5
+    vect7.push_back(40); // index 3, address 11, vect7.begin() + 3 or vect7.end() - 4
+    vect7.push_back(50); // index 4, address 12, vect7.begin() + 4 or vect7.end() - 3
+    vect7.push_back(60); // index 5, address 13, vect7.begin() + 5 or vect7.end() - 2
+    vect7.push_back(70); // index 6, address 14, vect7.begin() + 6 or vect7.end() - 1
+                         //                                           vect7.end()
+
+    // Printing vect7 before inserting
+    cout << "\nPrinting vect7 before inserting: ";
+    for(int i = 0; i < (int)vect7.size(); i++){
+        cout << vect7[i] << ", "; // this suppose to print [10, 20, 30, 40, 50, 60, 70]
+    }
+    cout << endl;
+
+    vect7.insert(vect7.begin() + 3, 100); // this will add 100 in begin()+3 or in the 3rd index or in the 4th location. Rest of the numbers after 100's index will increased by 1 in their index
+
+    // Printing vect7 after inserting
+    cout << "\nPrinting vect7 after inserting: ";
+    for(int i = 0; i < (int)vect7.size(); i++){
+        cout << vect7[i] << ", "; // this suppose to print [10, 20, 30, 100, 40, 50, 60, 70]
+    }
+    cout << "\n\n" << endl;
+
+
+
+
+
+    //-----------------------------------------------------------------------
+    // Sort()
+    // Since we add 100 in the middle of the vector, let's try to sort the whole vector now
+
+    sort(vect7.begin(), vect7.end());
+
+    // Printing vect7 after sorting
+    cout << "\nPrinting vect7 after sorting: ";
+    for(int i = 0; i < (int)vect7.size(); i++){
+        cout << vect7[i] << ", "; // this suppose to print [10, 20, 30, 40, 50, 60, 70, 100]
+    }
+    cout << "\n\n" << endl;
+
+
+
+
+
+    //-----------------------------------------------------------------------
+    // auto keyword
+
+    auto s = 123; cout << "auto s is now: " << s << endl;
+    auto a = 123.123; cout << "auto a is now: " << a << endl;
+    auto m = "Snake In My Garden"; cout << "auto m is now: " << m << endl;
+
+    cout << "\n\n" << endl;
+
+
+
+
+
+
+    //-----------------------------------------------------------------------
+    // Range Based for loop
+
+    // Printing the vect7 in range based loop
+    cout << "\nPrinting the vect7 in range based loop: ";
+    for(int i : vect7){
+        cout << i << ", ";
+    }
+
+    // Let's print the auto m from 351st line with this easy method
+    string str = "Taylor";
+
+    cout << "\n\nPrinting Taylor with some spaces in range based loop with char: ";
+    for(char i : str){
+        cout << i << " ";
+    }
+
+    cout << "\nPrinting Taylor with some spaces in range based loop with auto: ";
+    for(auto i : str){
+        cout << i << " ";
+    }cout << endl;
+
+    // Range Based for loop in reference parameter
+
+    // Printing the vect7 in range based loop with the help of increment operator
+    cout << "\nLet's see if we can print the vect7 in range based loop with the help of\nincrement operator (for ex: i+=2): \n";
+    for(int i : vect7){
+        i += 2;    // it won't increment the values by 2. Because i is increasing by 2, not vect7[i]
+    }
+    for(int i : vect7){
+        cout << i << ", ";
+    }cout << "\nAw, we couldn't change the values with increment operator\n";
+
+    // Printing the vect7 in range based loop with the help of reference parameter
+    cout << "\nLet's see if we can print the vect7 in range based loop with the help of\nreference parameter: \n";
+    for(int &i : vect7){
+        i += 2;    // it will increase the value of vect7[i] by 2. Because &i is going to the address of i itself and changing the whole value
+    }
+    for(int i : vect7){
+        cout << i << ", ";
+    }cout << "\nOh yes, Now we did increase the values by 2" << endl;
+
+    cout << "\n\n" << endl;
+
+
+
+
+
+
+
+    //-----------------------------------------------------------------------
+    // string
+
+    // Basics of string
+
+    string str1, str2, str3, str4; // declaration of a string
+    cout << "Enter str1: ";
+    cin >> str1; // It works like scanf("%s", str1) You can't take the space type inputs in this procedure
+    cin.ignore(); // This will ignore the enter input or space inputs. Because we gotta hit an enter or space after taking the first input. If we don't use this, enter or the space will be taken as an input in str2. You don't have to use this while using 2 cins after one another but if you use cin and getline after one another, you gotta use cin.ignore()
+    cout << "Enter str2: ";
+    getline(cin, str2); // It works like gets(str2) You can take the space type inputs in this procedure
+    cout << "Enter str3: ";
+    getline(cin, str3, 'w'); // It means take inputs upto 'w'. It won't take the inputs after w including w itself
+                             // There has to be a 'w' in this input otherwise the input will not be finished
+    cout << "Str1 is: " << str1 << endl;
+    cout << "Str2 is: " << str2 << endl;
+    cout << "Str3 is: " << str3 << endl;
+
+    str4 = str1 + " " + str2 + " Swift" + 's';
+    cout << "Str4 is: " << str4 << endl;
+
+    // push_back(), pop_back() these can be used in strings too but we usually don't use these for strings
+
+    // Comparing strings - These will be compared as chronologically (Order of a Dictionary)
+    if(str1 > str2){
+        cout << "str1 is greater than str2" << endl;
+    }else if(str1 < str2){
+        cout << "str2 is greater than str1" << endl;
+    }else if(str1 == str2){
+        cout << "str1 and str2 are equal" << endl;
+    }else if(str1 != str2){
+        cout << "str1 and str2 are not equal" << endl;
+    }
+
+    cout << "\n\n" << endl;
+
+
+
+
+
+
+
+    //-----------------------------------------------------------------------
+    // substr(), find(), erase()
+
+    string str5 = "abcdef ghij";
+    string str6 = "abcdef ghij";
+    cout << "Str5 is: " << str5 << endl;
+
+    // substr()
+    cout << "str5.substr(3): " << str5.substr(3) << endl;
+    cout << "str5.substr(3, 5): " << str5.substr(3, 5) << endl;
+
+    // find()
+    cout << "str5.find('d'): " << str5.find('d') << endl; // this will return the index
+
+    // erase()
+    cout << "str5.erase(3): " << str5.erase(3) << endl; // this will erase including and after the given input permanently
+    cout << "Str6 is: " << str6 << endl;
+    cout << "str6.erase(2, 4): " << str6.erase(2, 4) << endl; // this will erase including and from 2nd index to 3 more indexes (upto 5th index)
+
+    
+    cout << "\n\n" << endl;
+    
+    // End -----------------------------------------------------------------------
+
+       vector <vector <int>> v; // this is how you declare a 2D vector
+       vector <vector <int>> v(n); // this is how declare a 2D vector with fixed row size
+       vector <vector <int>> arr(n, vector <int> (m, 0)); // this is how you initialize a (NxM) 2D vector with initialized value
+    
+    return 0;
+}

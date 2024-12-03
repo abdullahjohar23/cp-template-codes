@@ -1,0 +1,39 @@
+#include <bits/stdc++.h>
+#include <ext/pb_ds/assoc_container.hpp>
+#include <ext/pb_ds/tree_policy.hpp>
+
+using namespace std;
+using namespace __gnu_pbds;
+
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    cout.tie(NULL);
+
+    string s, word;
+    getline (cin, s);
+    
+    stringstream split(s);
+
+    while (split >> word) {
+        cout << word << endl;
+    }
+
+    return 0;
+}
+
+/*
+
+Input
+my name is bond james bond
+
+Output
+my
+name
+is
+bond
+james
+bond
+
+*/

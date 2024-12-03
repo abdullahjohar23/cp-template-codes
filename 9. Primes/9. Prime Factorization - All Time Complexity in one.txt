@@ -1,0 +1,83 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+using ll = long long;
+
+ll mx = 1e7 ;
+ll is_prime[10000007]; // To make numbers non prime
+ll save[1000000]; // To store the prime numbers in here
+ll index; // Indexes for prime number, for save[] array
+
+// Generating primes using sieve
+void sieve()
+{
+    // Value: 0 is prime
+    // Value: 1 is not prime
+
+    is_prime[0] = 1 ; // Make 0 non prime
+    is_prime[1] = 1 ; // Make 1 non prime
+    index = 0;
+
+    for (ll i = 2; i <= mx; i++) {
+        if (is_prime[i] == 0) {
+            save[index] = i;
+            index++ ;
+
+            for (ll j = i * i; j <= mx; j += i){ // Making all the multiples non prime, of a prime number
+                is_prime[j] = 1;
+            }
+        }
+    }
+}
+
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+
+    ll n;
+    cin >> n;
+
+
+    //O(N) Prime factorization
+    for (ll i = 2; i <= n; i++) {
+        while (n % i == 0) {
+            n /= i;
+            cout << i << " ";
+        }
+    }
+    cout << endl;
+
+    //O(sqrt(n)) Prime factorization
+    for (ll i = 2; i * i <= n; i++) {
+        while (n % i == 0) {
+            n /= i;
+            cout << i << " ";
+        }
+    }
+
+    if (n > 1) {
+        cout << n << endl;
+    }
+
+    // O( sqrt(n) / ln(sqrt(n)) ) Prime factorization with precomputed primes(sieve)
+    sieve();
+
+    for (int i = 0; i < index; i++) {
+        if (save[i] * save[i] > n) {
+            break;
+        }
+
+        while (n % save[i] == 0) {
+            n /= save[i];
+            cout << save[i] << " ";
+        }
+    }
+    
+    if (n > 1) {
+        cout << n << endl ;
+    }
+
+    return 0;
+}

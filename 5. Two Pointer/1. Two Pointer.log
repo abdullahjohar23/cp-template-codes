@@ -1,0 +1,48 @@
+#include <bits/stdc++.h>
+
+using namespace std ;
+
+int main()
+{
+    ios_base::sync_with_stdio(false) ;
+    cin.tie(NULL) ;
+    cout.tie(NULL) ;
+
+    // Merging two arrays using Two Pointer
+
+    long long n, m ;
+    cin >> n >> m ;
+
+    long long arr[n+1], brr[m+1], crr[n+m] ;
+
+    for (int i = 0; i < n; i++) {
+        cin >> arr[i] ;
+    }
+
+    for (int i = 0; i < n; i++) {
+        cin >> brr[i] ;
+    }
+
+    sort(arr, arr+n) ;
+    sort(brr, brr+m) ;
+
+    arr[n] = INT_MAX;
+    brr[m] = INT_MAX;
+
+    long long i = 0, j = 0, k = 0 ;
+    while (i < n || j < m) {
+        if (arr[i] < brr[j]) {
+            crr[k++] = arr[i++] ;
+        } else {
+            crr[k++] = brr[j++] ;
+        }
+    }
+
+    for (int i = 0; i < (m+n); i++) {
+        cout << crr[i] << " " ;
+    }
+
+    cout << endl ;
+
+    return 0 ;
+}

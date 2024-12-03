@@ -1,0 +1,35 @@
+#include <bits/stdc++.h>
+
+using namespace std ;
+
+int main()
+{
+    ios_base::sync_with_stdio(false) ;
+    cin.tie(NULL) ;
+    cout.tie(NULL) ;
+
+    // Queue values can't be accessed individually
+
+    // FIFO = First In First Out
+
+    queue <int> qu1, qu2 ;
+    int x ;
+
+    // Taking 5 inputs
+    for (int i = 0; i < 5; i++) {
+        cin >> x ; // 1 2 3 4 5 take these inputs
+        qu1.push(x) ;
+        qu2.push(x) ;
+    }
+
+    while (qu1.empty() == false) { // this can also be written as while (!qu1.empty())
+        cout << qu1.front() << endl ; // Will print 1 2 3 4 5
+
+        qu1.pop() ; // Removes the first element from the queue
+    }
+
+    cout << qu2.front() << endl; // will print 1
+    cout << qu2.back() << endl; //  will print 5
+
+    return 0 ;
+}

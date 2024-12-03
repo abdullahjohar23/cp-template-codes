@@ -1,0 +1,4 @@
+minValue  = *min_element (arr, arr+n);
+maxValue = *max_element (arr, arr+n);
+
+size = sizeof(arr) / sizeof(arr[0])

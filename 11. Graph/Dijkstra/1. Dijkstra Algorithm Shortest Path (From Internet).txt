@@ -1,0 +1,61 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+const int INF = 1e9 + 19;
+const long long LIM = 1e5 + 15;
+
+vector <vector <pair<long long, long long>>> G;
+vector <bool> mark;
+vector <long long> dist;
+
+void dijkstra (long long s) {
+    fill(dist.begin(),dist.end(), LIM);
+    
+    set <pair<long long, long long>> S;
+    S.insert( {dist[s] = 0, s} );
+    
+    while (!S.empty()) {
+        long long u = S.begin() -> second;
+        S.erase(S.begin());
+        
+        for (auto v : G[u]) {
+            if ( dist[v.first] > dist[u] + v.second ) {
+                S.erase ( {dist[v.first], v.first} );
+                dist[v.first] = dist[u] + v.second;
+                S.insert ( {dist[v.first], v.first} );
+            }
+        }
+    }
+}
+
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    cout.tie(NULL);
+
+    long long n, m, s, t;
+    cin >> n >> m;
+
+    G.resize(n + 1);
+    mark.assign(n + 1, false);
+    dist.resize(n + 1);
+    
+    for (int i = 1; i <= m; ++i) {
+        long long u, s, c;
+        cin >> u >> s >> c;
+        G[u].push_back({s, c});
+    }
+
+    s = 1, t = n; // s is source & t is destination
+
+    dijkstra(s);
+    
+    if (dist[t] == INF)
+        cout << "There is no path from " << s << " to " << t;
+    else 
+        cout << "Min distance (" << s << " -> " << t << ") = " << dist[t];
+        
+    return 0;
+}

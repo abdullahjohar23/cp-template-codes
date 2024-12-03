@@ -1,0 +1,79 @@
+#include <bits/stdc++.h>
+
+using namespace std ;
+
+string addNum (string a, string b) {
+    // return result ;
+}
+
+string multi (string a, string b) {
+    int cnt = 0 ;
+    string res = "0" ;
+
+    for (int i = b.size() - 1; i >= 0; i--) {
+        int num = b[i] - '0' ;
+        int carry = 0 ;
+        string temp ;
+
+        for (int j = a.size() - 1; j >= 0; j--) {
+            int mul = (num * (a[j] - '0')) + carry ;
+            carry = mul / 10 ;
+
+            temp.push_back (mul % 10) ;
+        }
+
+        if (carry > 0) {
+            temp.push_back (carry) ;
+        }
+
+        reverse (temp.begin(), temp.end()) ;
+
+        res = addNum (res, temp) ;
+        cnt++ ;
+    }
+
+    return res ;
+}
+
+string div (string a, int d) {
+    int num = 0 ;
+
+    string res ;
+
+    for (int i = 0; i < a.size(); i++) {
+        num = (a[i] - '0') + num * 10 ;
+
+        if (num >= d) {
+            res.push_back ( (num / d) + '0' ) ;
+            num = num % d ;
+        }
+    }
+
+    return res ;
+}
+
+int mod (string a, int d) {
+    int num = 0 ;
+
+    string res ;
+
+    for (int i = 0; i < a.size(); i++) {
+        num = (a[i] - '0') + num * 10 ;
+
+        if (num >= d) {
+            res.push_back ( (num / d) + '0' ) ;
+            num = num % d ;
+        }
+    }
+
+    return num ;
+}
+
+int main()
+{
+	ios_base::sync_with_stdio(false) ;
+   	cin.tie(NULL) ;
+    	cout.tie(NULL) ;
+	
+	return 0;
+}

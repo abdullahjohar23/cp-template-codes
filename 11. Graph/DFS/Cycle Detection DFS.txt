@@ -1,0 +1,57 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+bool dfs (vector <vector<int>> &adj, vector <int> &vis, int node, int par) {
+    vis[node] = 1;
+
+    for (int i = 0; i < adj[node].size(); i++) {
+        if (vis[adj[node][i]] == 0) {
+            if (dfs(adj, vis, adj[node][i], node) == true) {
+                return true;
+            }
+        } else if (par != adj[node][i]) {
+            return true;
+        }
+    }
+    return false;
+}
+
+int main() 
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    cout.tie(NULL);
+    
+    int n, m, x, y;
+    
+    cin >> n >> m;
+    
+    vector <vector<int>> adj(n+1);
+    vector <int> vis(n+1, 0);
+    
+    while (m--) {
+        cin >> x >> y;
+        adj[x].push_back(y);
+        adj[y].push_back(x);
+    }
+
+    int node = 1;
+    int par  = -1;
+    bool flag = dfs(adj, vis, node, par);
+    
+    if (flag == true) cout << "No" << endl;
+    else cout << "Yes" << endl;   
+    
+    return 0;
+}
+
+// Input
+// 5 4
+// 1 2
+// 3 4
+// 1 4
+// 5 2
+
+// Output
+// Yes

@@ -1,0 +1,62 @@
+#include <bits/stdc++.h>
+#include <ext/pb_ds/assoc_container.hpp>
+#include <ext/pb_ds/tree_policy.hpp>
+
+using namespace std;
+using namespace __gnu_pbds;
+
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    cout.tie(NULL);
+    
+    // Unordered Set contains unique values and it doesn't sort the set
+    unordered_set <int> s;
+    int n, a;
+    cin >> n;
+
+    for (int i = 0; i < n; i++) {
+        cin >> a;
+        s.insert(a);
+    }
+
+    cout << "The ordered set is: " << endl;
+
+    for (auto &it : s) {
+        cout << it << ' ';
+    }
+
+    cout << endl;
+
+    if (s.find(7) == s.end()) {
+        cout << 7 << " is not in this unordered set" << endl;
+    } else {
+        cout << 7 << " is in this unordered set" << endl;
+    }
+
+    s.erase(5);
+
+    cout << "After erasing 5 the ordered set is: " << endl;
+
+    for (auto &it : s) {
+        cout << it << ' ';
+    }
+    
+    return 0;
+}
+
+/*
+
+Input
+12
+1 3 2 5 4 5 4 1 1 1 4 2
+
+Output
+The ordered set is: 
+4 5 2 1 3 -> this is randomly ordered
+7 is not in this unordered set
+After erasing 5 the ordered set is: 
+4 2 1 3
+
+*/

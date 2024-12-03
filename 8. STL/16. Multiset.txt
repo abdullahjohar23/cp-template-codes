@@ -1,0 +1,93 @@
+#include <bits/stdc++.h>
+#include <ext/pb_ds/assoc_container.hpp>
+#include <ext/pb_ds/tree_policy.hpp>
+
+using namespace std;
+using namespace __gnu_pbds;
+
+int main()
+ {
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    cout.tie(NULL);
+
+    // multiset is a type of set that can store duplicate values
+    // multiset is sorted by default
+    
+    // multiset <int> for ascending multiset
+    // multiset <int, greater <int>> for decsending multiset
+
+    multiset <int> ms1;
+    
+    int n, a;
+    cin >> n;
+
+    for (int i = 0; i < n; i++) {
+        cin >> a;
+        ms1.insert(a);
+    }
+
+    multiset <int, greater <int>> ms2 (ms1.begin(), ms1.end()); // assigning the elements from ms1 to ms2 (you just can't write ms1 = ms2)
+
+    for (auto i : ms1) {
+        cout << i << ' ';
+    }
+
+    cout << endl;
+
+    for (auto i : ms2) {
+        cout << i << ' ';
+    }
+
+    cout << endl << endl;
+
+    cout << "Lower bound for 1 is: " << *ms1.lower_bound(1) << endl;
+    cout << "Upper bound for 1 is: " << *ms1.upper_bound(1) << endl;
+
+    ms1.erase(ms1.begin(), ms1.find(5)); // way to erase all elements less than the parameter
+    
+    cout << endl << "\nAfter erasing elements less than 5, the multiset: ";
+
+    for (auto i : ms1) {
+        cout << i << ' ';
+    }
+
+    
+    ms1.erase(ms1.find(8)); // this will only delete the very first 8 from multiset
+    cout << endl << "\nAfter erasing first 8, the multiset: ";
+
+    for (auto i : ms1) {
+        cout << i << ' ';
+    }
+    
+    ms1.erase(8); // way to erase all elements equal to 8
+    cout << endl << "\nAfter erasing all 8s, the multiset: ";
+
+    for (auto i : ms1) {
+        cout << i << ' ';
+    }
+
+    return 0;
+}
+
+/*
+
+Input
+12
+3 1 5 1 2 1 8 1 9 8 8 8
+
+Output
+1 1 1 1 2 3 5 8 8 8 8 9 
+9 8 8 8 8 5 3 2 1 1 1 1 
+
+Lower bound for 1 is: 1
+Upper bound for 1 is: 2
+
+
+After erasing elements less than 5, the multiset: 5 8 8 8 8 9 
+
+After erasing first 8, the multiset: 5 8 8 8 9 
+
+After erasing all 8s, the multiset: 5 9
+
+*/

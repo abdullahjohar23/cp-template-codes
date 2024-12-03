@@ -1,0 +1,46 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    cout.tie(NULL);
+
+    string str;
+    int n;
+    cin >> n;
+    
+    cout << "String Frequency" << endl;
+
+    map <string, int> mp;
+    
+    for(int i = 0; i < n; i++) {
+        cin >> str;
+        mp[str]++;  // // map.first is a string, map.second is frequency for that string
+    }
+
+    for(auto it : mp) {
+        cout << it.first << " " << it.second << endl;
+    }
+
+    return 0;
+}
+
+/*
+
+Input
+5
+faysal
+shihab
+faysal
+faysal
+shihab
+
+Output
+String Frequency
+faysal 3
+shihab 2
+
+*/

@@ -1,0 +1,64 @@
+#include <bits/stdc++.h>
+#include <ext/pb_ds/assoc_container.hpp>
+#include <ext/pb_ds/tree_policy.hpp>
+
+using namespace std;
+using namespace __gnu_pbds;
+
+int size_of_longest_Common_Subsequence (string s1, string s2) {
+    int n = s1.size(), m = s2.size();
+    int dp[n+1][m+1];
+    
+    memset(dp, 0, sizeof dp) ;
+        
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < m; j++) {
+            if (s1[i] == s2[j]) {
+                dp[i+1][j+1] = dp[i][j] + 1;
+            } else {
+                dp[i+1][j+1] = max(dp[i][j+1], dp[i+1][j]);
+            }
+        }
+    }
+    return dp[n][m];
+}
+
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    cout.tie(NULL);
+
+    int t;
+    cin >> t;
+
+    while (t--) {
+        string a, b;
+        cin >> a >> b;
+        cout << size_of_longest_Common_Subsequence(a, b) << endl;
+    }
+
+    return 0;
+}
+
+/*
+
+Input
+5
+abcde ace
+abc abc
+abc def
+abcdefgh cdfh
+abcdefgh cdfhi
+
+Output
+3
+3
+0
+4
+4
+
+*/
+
+Related Problem: https://leetcode.com/problems/longest-common-subsequence/
+Solution: https://pastebin.ubuntu.com/p/F2MQcHB2Bc/

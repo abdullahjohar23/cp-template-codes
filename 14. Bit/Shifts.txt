@@ -1,0 +1,53 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    cout.tie(NULL);
+
+    /* In Decimal
+        Left Shift  : (n << a) means n * 2^a
+        Right Shift : (n >> a) means n / 2^a
+    */
+
+    /* In Binary
+        Left Shift  : (n << a) means shifting first a bits to the right
+        Right Shift : (n >> a) means shifting first a bits to the left
+
+        if n = 5 and a = 2, for simplicity we are using 6 bits only
+            (5 << 2) = 000101 -> 010100 (5 * 2^2 = 20, 010100 means 20)
+            (5 >> 2) = 000101 -> 000001 (5 / 2^2 = 1,  000001 means 1)
+    */
+
+    int t, n, leftShift, rightShift;
+    cin >> t;
+
+    while(t--) {
+        cin >> n;
+
+        leftShift  = n << 3;
+        rightShift = n >> 4;
+        
+        cout << leftShift << ' ' << rightShift << endl;
+    }
+
+    return 0;
+}
+
+/*
+
+Input
+5
+10 20 30 40 50
+
+Output
+80 0
+160 1
+240 1
+320 2
+400 3
+
+*/

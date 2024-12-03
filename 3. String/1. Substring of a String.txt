@@ -1,0 +1,69 @@
+#include <bits/stdc++.h>
+#include <ext/pb_ds/assoc_container.hpp>
+#include <ext/pb_ds/tree_policy.hpp>
+
+using namespace std;
+using namespace __gnu_pbds;
+
+int main()
+{
+    ios::sync_with_stdio(false);
+    cin.tie(NULL);
+    cout.tie(NULL);
+
+/*
+    Substring can be compared to subarray
+
+    string str = "abcdefgh" ;
+    cout << str.substr(0) << endl;    // from 0 to last ("abcdefgh")
+    cout << str.substr(1) << endl;    // from 1 to last ("bcdefgh")
+    cout << str.substr(2) << endl;    // from 2 to last ("cdefgh")
+    cout << str.substr(1, 4) << endl; // from index 1 to 4 letters ("bcde")
+    cout << str.substr(4, 1) << endl; // from index 4 to 1 letters ("e")
+*/
+
+    string s;
+    cin >> s;
+
+    // Printing the substrings of the string
+
+    for (int i = 0; i < s.size(); i++) {
+        for (int j = i; j < s.size(); j++) {
+            for (int k = i; k <= j; k++) {
+                cout << s[k] << ' ';
+            }
+            cout << endl;
+        }
+        cout << endl;
+    }
+
+    return 0;
+}
+
+/*
+
+Input:
+abcde
+
+Output:
+a 
+a b 
+a b c 
+a b c d 
+a b c d e 
+
+b 
+b c 
+b c d 
+b c d e 
+
+c 
+c d 
+c d e 
+
+d 
+d e 
+
+e
+
+*/

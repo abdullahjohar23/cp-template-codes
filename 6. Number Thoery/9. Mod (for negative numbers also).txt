@@ -1,0 +1,32 @@
+#include <bits/stdc++.h>
+#include <ext/pb_ds/assoc_container.hpp>
+#include <ext/pb_ds/tree_policy.hpp>
+
+using namespace std;
+using namespace __gnu_pbds;
+
+long long mod (long long a, long long m) {
+    return ((a%m+m) % m);
+}
+
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    cout.tie(NULL);
+
+    cout << mod (10, 3) << endl;
+    cout << mod (-1, 9) << endl;
+    cout << mod (-5, 25) << endl;
+
+    return 0;
+}
+
+/*
+
+Output
+1
+8
+20
+
+*/

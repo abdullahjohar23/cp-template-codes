@@ -1,0 +1,85 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+const long long INF = 1e9 + 19;
+const long long LIM = 1e5 + 15;
+
+vector<vector<pair<long long, long long>>> G;
+vector<bool> mark;
+vector<long long> dist;
+
+void dijkstra(long long s)
+{
+    fill(dist.begin(), dist.end(), INF);
+    fill(mark.begin(), mark.end(), false);
+    
+    priority_queue <
+        pair <long long, long long>,
+        vector <pair <long long, long long>>,
+        greater <pair <long long, long long>>
+    > pq;
+
+    pq.push({dist[s] = 0, s});
+    
+    while (!pq.empty()) {
+        long long u = pq.top().second;
+        pq.pop();
+        
+        if (mark[u]) continue;
+        else mark[u] = true;
+        
+        for (auto v : G[u]) {
+            if (dist[v.first] > dist[u] + v.second) {
+                dist[v.first] = dist[u] + v.second;
+                pq.push({dist[v.first], v.first});
+            }
+        }
+    }
+}
+
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    cout.tie(NULL);
+
+    long long n, m, s, t;
+    cin >> n >> m;
+
+    G.resize(n + 1);
+    mark.assign(n + 1, false);
+    dist.resize(n + 1);
+    
+    for (int i = 1; i <= m; ++i) {
+        long long u, v, c;
+        cin >> u >> v >> c;
+        G[u].push_back({v, c});
+    }
+
+    s = 1, t = n;
+
+    dijkstra(s);
+    
+    if (dist[t] == INF)
+        cout << "There is no path from " << s << " to " << t;
+    else 
+        cout << "Min distance (" << s << " -> " << t << ") = " << dist[t];
+        
+    return 0;
+}
+
+/** Example
+
+5 6
+1 2 2
+2 5 5
+2 3 4
+1 4 1
+4 3 3
+3 5 1
+
+Min distance (1 -> 5) = 5
+
+
+*/

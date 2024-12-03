@@ -1,0 +1,75 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+const int lim = 1e5 + 5;
+vector <int> adj[lim];
+bool visited[lim];
+
+void dfs (int u) {
+    cout << u << " ";
+    visited[u] = 1;
+
+    for (int i = 0; i < adj[u].size(); i++) {
+        int v = adj[u][i];
+        if (visited[v] == 0) {
+            dfs(v);
+        }
+    }
+}
+
+int main() 
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    cout.tie(NULL);
+
+    // n = number of nodes
+    // m = number of edegs
+    int n, m;
+    cin >> n >> m;
+
+    for (int i = 1; i <= m; i++) {
+        int x, y;
+        cin >> x >> y;
+
+        adj[x].push_back(y);
+        adj[y].push_back(x);
+    }
+
+    int source;
+    cin >> source;
+
+    dfs(source);
+
+    return 0;
+}
+
+
+// Input
+// 7 8
+
+// 1 2
+// 1 3
+// 1 5
+// 2 3
+// 3 4
+// 4 5
+// 5 6
+// 6 7
+
+// 1
+
+
+// Output
+// 1 2 3 4 5 6 7
+
+/*
+            1
+         /  |  \
+        2---3   5
+             \ / \
+              4   6
+                   \
+                    7
+*/

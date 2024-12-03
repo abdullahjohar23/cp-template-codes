@@ -1,0 +1,55 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    cout.tie(NULL);
+
+    bool found = false;
+    int n, arr[100];
+    int l, r, m, x;
+
+    /** Necessary Variables:
+    l: denotes the most Left index
+    r: denotes the most Right index
+    m: denotes Middle index
+    x: is the target value we wanna find
+    */
+
+    cout << "Enter the Array size: ";
+    cin >> n;
+    cout << "Enter the value to look its lower bound: ";
+    cin >> x;
+
+    // Taking Inputs in Array
+    for(int i = 0; i < n; i++){
+        cout << "Enter arr[" << i << "]: ";
+        cin >> arr[i];
+    }
+
+    // Checking the Lower Bound
+    // l = -1 is for minus infinity (to add smaller number)
+    // r = n is for infinity (to add larger number)
+    
+    l = -1, r = n;
+    while(l+1 < r){
+        m = (l+r) / 2;
+
+        if(x <= arr[m]){
+            r = m;
+        }else{
+            l = m;
+        }
+    }
+
+    cout << "Lower Bound for " << x << " is: " << r << endl;
+
+    // Build In Funtion, lower_bound()
+    // r = lower_bound(arr.begin(), arr.end(), x) - arr.begin(); // It returns the position {For Vectors}
+    // r = lower_bound(arr, arr+n, x) - arr ; // It returns the position {For Arrays}
+
+    return 0;
+}

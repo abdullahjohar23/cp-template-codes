@@ -1,0 +1,125 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+const long long lim = 1e5 + 5;
+long long n, m;
+long long visited[lim], dis[lim], parent[lim];
+vector <long long> adj[lim];
+
+void bfs (long long source) {
+    queue <long long> q;
+
+    for (int i = 1; i <= n; i++) {
+        dis[i] = -1;
+        parent[i] = -1;
+        visited[i] = -1;
+    }
+
+    dis[source] = 0;
+    q.push(source);
+    visited[source] = 1;
+
+    while (!q.empty()) {
+        long long u = q.front();
+        q.pop();
+
+        for (int i = 0; i < adj[u].size(); i++) {
+            long long v = adj[u][i];
+            
+            if (visited[v] == -1) { // Unvisited condition checking
+                visited[v] = 1; // Checked Visited
+                dis[v] = dis[u] + 1; // Setting the distance 
+                parent[v] = u; // Setting the Parent
+                q.push(v); // Pushing the unvisited node into the Queue
+            }
+        }
+    }
+}
+
+int main() 
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    cout.tie(NULL);
+    
+    // n = number of nodes
+    // m = number of edges
+    cin >> n >> m;
+    
+    for (int i = 1; i <= m; i++) {
+        long long x, y;
+        cin >> x >> y;
+        adj[x].push_back(y);
+        adj[y].push_back(x);
+    }
+
+    // source = starting node
+    // current = destination
+    long long source, current, distance;
+    cin >> source >> current;
+    
+    bfs(source);
+
+    distance = dis[current] + 1;
+
+    for (int i = 1; i <= n; i++) {
+        cout << "Distance of " << source << " to " << i << " is : " << dis[i] << " " << endl;
+    }
+    cout << endl;
+
+    int comp = 0;
+    for (int i = 1; i <= n; i++) {
+        if (!dis[i]) {
+            bfs(i);
+            comp++;
+        }
+    }
+
+    vector <long long> path;
+    
+    // Shortest Path of Source to Destination
+    while (current != -1) {
+        path.push_back(current);
+        current = parent[current];
+    }
+
+    reverse(path.begin(), path.end());
+    
+    cout << distance << endl;
+    for (int i = 0; i < path.size(); i++) {
+        cout << path[i] << " ";
+    }
+
+    cout << endl << "There are " << comp << " groups" << endl;
+
+    return 0;
+}
+
+// Input
+// 9 9
+// 1 2 
+// 1 5
+// 2 3
+// 2 4
+// 5 6
+// 5 7
+// 6 9
+// 6 8
+// 7 8
+// 4 9
+
+// Output
+// Distance of 4 to 1 is : 2 
+// Distance of 4 to 2 is : 1 
+// Distance of 4 to 3 is : 2 
+// Distance of 4 to 4 is : 0 
+// Distance of 4 to 5 is : 3 
+// Distance of 4 to 6 is : 4 
+// Distance of 4 to 7 is : 4 
+// Distance of 4 to 8 is : 5 
+// Distance of 4 to 9 is : 5 
+
+// 6
+// 4 2 1 5 6 9
+// There are 1 groups

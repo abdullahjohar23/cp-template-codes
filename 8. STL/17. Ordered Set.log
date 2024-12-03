@@ -1,0 +1,104 @@
+#include <bits/stdc++.h>
+#include <ext/pb_ds/assoc_container.hpp> // necessary for ordered set
+#include <ext/pb_ds/tree_policy.hpp> // necessary for ordered set
+
+// Go to the MingW folder and search "pb_ds". Go to detail/resize/ go to the different file and rename it. Remove the last digits from it and save
+
+using namespace std ;
+using namespace __gnu_pbds; // necessary for ordered set
+
+int main()
+{
+    ios_base::sync_with_stdio(false) ;
+    cin.tie(NULL) ;
+    cout.tie(NULL) ;
+
+/*
+    ordered set keep the set sorted
+    
+                               -----> If this is less, it stores unique values, if it's less_equal, it stores duplicate values too (Ascending Sorted). To sort it in Descending order, type "greater"
+                              |
+    tree <int, null_type, less<int>, rb_tree_tag,tree_order_statistics_node_update> {This whole part is like data type for ordered set}
+*/    
+    
+    tree <int, null_type, less <int>, rb_tree_tag, tree_order_statistics_node_update> ordered_set1 ; // ascending
+    tree <int, null_type, greater <int>, rb_tree_tag, tree_order_statistics_node_update> ordered_set2; // descending
+    
+    int n, a; cin >> n;
+
+    for (int i = 0; i < n; i++) {
+        cin >> a;
+        ordered_set1.insert(a);
+        ordered_set2.insert(a);
+    }
+
+/*
+    This is how you can also print the ordered set with find_by_order()
+    for (int i = 0; i < odrSet.size(); i++) {
+        cout << *odrSet.find_by_order(i) << ' ';
+    }
+*/
+
+/*
+    order_of_key(x) returns how many elements are smaller than x (in ascending)
+    order_of_key(x) returns how many elements are larger than x (in descending)
+
+    find_by_order(x) returns the x-th element in the ordered set (like index, starting from 0)
+*/
+
+    cout << "Ascending ordered set: ";
+    for (auto &it : ordered_set1) {
+        cout << it << ' '; // 1 2 3 4 5 8
+    }
+    
+    cout << endl;
+    cout << "\nIn ascending ordered set," << endl;
+    cout << "  There are " << ordered_set1.order_of_key(1) << " numbers smaller than 1" << endl; // 0 {() <- 1 2 3 4 5 8}
+    cout << "  There are " << ordered_set1.order_of_key(7) << " numbers smaller than 7" << endl; // 5 {(1 2 3 4 5) <- 8}
+    cout << "  1st number is " << *ordered_set1.find_by_order(0) << endl; // 1 {(1) 2 3 4 5 8}
+    cout << "  3rd number is " << *ordered_set1.find_by_order(2) << endl; // 3 {1 2 (3) 4 5 8}
+    
+    cout << "________________________________" << endl;
+
+    cout << "\nDescending ordered set: ";
+    for (auto &it : ordered_set2) {
+        cout << it << ' '; // 8 5 4 3 2 1
+    }
+
+    cout << endl;
+    cout << "\nIn descending ordered set," << endl;
+    cout << "  There are " << ordered_set2.order_of_key(1) << " numbers larger than 1" << endl; // 5 {(8 5 4 3 2) <- 1}
+    cout << "  There are " << ordered_set2.order_of_key(7) << " numbers larger than 7" << endl; // 1 {(8) <- 5 4 3 2 1}
+    cout << "  1st number is " << *ordered_set2.find_by_order(0) << endl; // 8 {(8) 5 4 3 2 1}
+    cout << "  3rd number is " << *ordered_set2.find_by_order(2) << endl; // 4 {8 5 (4) 3 2 1}
+
+    ordered_set1.clear(); // to clear the ordered set
+
+    return 0 ;
+}
+
+/*
+
+Input
+10
+4 4 2 3 5 1 1 2 4 8
+
+Output
+Ascending ordered set: 1 2 3 4 5 8 
+
+In ascending ordered set,
+  There are 0 numbers smaller than 1
+  There are 5 numbers smaller than 7
+  1st number is 1
+  3rd number is 3
+________________________________
+
+Descending ordered set: 8 5 4 3 2 1 
+
+In descending ordered set,
+  There are 5 numbers larger than 1
+  There are 1 numbers larger than 7
+  1st number is 8
+  3rd number is 4
+
+*/

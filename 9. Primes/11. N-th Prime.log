@@ -1,0 +1,38 @@
+#include <bits/stdc++.h>
+
+using namespace std ;
+
+bool isPrime[90000005] ;
+long long mx = 90000000 ;
+vector <long long> primeList ;
+
+void sieve() {
+    for (int i = 2; i <= mx / i; i++) {
+        if (isPrime[i] == false) {
+            for (int j = i*i; j <= mx; j += i) {
+                isPrime[j] = true ;
+            }
+        }
+    }
+
+    for (int i = 2; i <= mx; i++) {
+        if (isPrime[i] == false) {
+            primeList.push_back(i) ;
+        }
+    }
+}
+
+int main()
+{
+    sieve() ;
+
+    long long t, n ;
+    cin >> t ;
+
+    while (t--) {
+        cin >> n ;
+        cout << primeList[n-1] << endl ;
+    }
+    
+    return 0;
+}

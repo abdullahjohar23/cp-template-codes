@@ -1,0 +1,75 @@
+#include <bits/stdc++.h>
+#include <ext/pb_ds/assoc_container.hpp>
+#include <ext/pb_ds/tree_policy.hpp>
+
+using namespace std;
+using namespace __gnu_pbds;
+
+int reverseInt (int n) {
+    int rev = 0;
+    while (n > 0) {
+        rev = (rev * 10) + (n % 10);
+        n /= 10;
+    }
+    return rev;
+}
+
+string bigAdd (string s1, string s2) {
+    // s1 = bigger string
+    // s2 = smaller string
+    string ans = "";
+
+    if (s1.size() < s2.size()) swap (s1, s2);
+
+    reverse (s1.begin(), s1.end());
+    reverse (s2.begin(), s2.end());
+
+    int diff = s1.size() - s2.size();
+    while (diff--) s2.push_back('0');
+
+    int carry = 0;
+
+    for (int i = 0; i < s1.size(); i++) {
+        int a = s1[i] - '0';
+        int b = s2[i] - '0';
+
+        int sum = a + b + carry;
+        carry = sum / 10;
+        int add = sum % 10;
+        
+        if (i == s1.size()-1) {
+            string s = to_string (reverseInt(sum));
+            ans += s;
+        } else {
+            string s = to_string (add);
+            ans += s;
+        }
+    }
+    reverse (ans.begin(), ans.end());
+    return ans;
+}
+
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    cout.tie(NULL);
+
+    string s1, s2;
+    cin >> s1 >> s2;
+
+    cout << bigAdd (s1, s2) << endl;
+
+    return 0;
+}
+
+/*
+
+Input
+123456789123456789123456789123456789
+123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789
+
+Output
+123456789123456789123456789123456789123456789123456789123456789123456789246913578246913578246913578246913578
+
+*/

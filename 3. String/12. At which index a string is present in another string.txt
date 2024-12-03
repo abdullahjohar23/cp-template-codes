@@ -1,0 +1,64 @@
+#include <bits/stdc++.h>
+#include <ext/pb_ds/assoc_container.hpp>
+#include <ext/pb_ds/tree_policy.hpp>
+
+using namespace std;
+using namespace __gnu_pbds;
+
+// Checking whether s1 is present in s2 or not
+
+int isSubstring (string s1, string s2)  {
+    int m = s1.size();
+    int n = s2.size(); 
+
+    for (int i = 0; i <= n - m; i++) {
+        int j;
+
+        for (j = 0; j < m; j++) {
+            if (s2[i + j] != s1[j]) {
+                break;
+            }
+        }
+  
+        if (j == m) 
+            return i;
+    } 
+    return -1;
+} 
+
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    cout.tie(NULL);
+
+    string s1, s2;
+    cin >> s1 >> s2; 
+    
+    int res = isSubstring(s1, s2); 
+    
+    if (res == -1) 
+        cout << "Not Present"; 
+    else
+        cout << res << endl;
+
+    return 0;
+}
+
+/*
+
+Input
+for
+geeksforgeeks
+
+Output
+5
+
+Input
+abcd
+efgh
+
+Output
+Not Present
+
+*/

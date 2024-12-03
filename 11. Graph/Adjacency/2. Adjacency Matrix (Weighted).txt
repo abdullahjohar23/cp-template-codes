@@ -1,0 +1,57 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main() 
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    cout.tie(NULL);
+
+    // Node = Vertices
+    // Connection = Edges
+
+    long long n, m, x, y, w;
+    cin >> n >> m;
+
+    // n is number of nodes
+    // m is number of edges
+
+    vector <vector<long long>> adjMat(n+1, vector <long long> (n+1, 0)); // Initially making all the connections zero
+
+    for (int i = 1; i <= m; i++) {
+        // w is the weight between x and y
+        cin >> x >> y >> w;
+        adjMat[x][y] = w;
+        adjMat[y][x] = w;
+    }
+
+    for (int i = 1; i <= n; i++) {
+        for (int j = 1; j <= n; j++) {
+            cout << adjMat[i][j] << " ";
+        }
+        cout << endl;
+    }
+    
+    return 0;    
+}
+
+// Input
+// 7 8
+// 1 2 3
+// 2 3 2
+// 1 3 5
+// 3 4 7
+// 4 5 9
+// 1 5 5
+// 5 6 4
+// 6 7 1
+
+// Output
+// 0 3 5 0 5 0 0 
+// 3 0 2 0 0 0 0 
+// 5 2 0 7 0 0 0 
+// 0 0 7 0 9 0 0 
+// 5 0 0 9 0 4 0 
+// 0 0 0 0 4 0 1 
+// 0 0 0 0 0 1 0

@@ -1,0 +1,51 @@
+#include <bits/stdc++.h>
+#include <ext/pb_ds/assoc_container.hpp>
+#include <ext/pb_ds/tree_policy.hpp>
+
+using namespace std;
+using namespace __gnu_pbds;
+
+tree <int, null_type, less <int>, rb_tree_tag, tree_order_statistics_node_update> oderedSet;
+
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    cout.tie(NULL);
+    
+    string s;
+    cin >> s;
+      
+    unordered_map <char, int> mp; // key will not be sorted like map, key will be random
+       
+    for (int i = 0; i < s.size(); i++) {
+        mp[s[i]]++;
+    }
+
+    cout << "Character" << "\t" << "Frequency" << endl;
+    for (auto it : mp) {
+        cout << it.first << "\t\t" << it.second<<endl;
+    }
+    
+    return 0;
+}
+
+/*
+
+Input
+AbdullahJohar
+
+Output
+Character	Frequency
+o		1
+h		2
+b		1
+A		1
+d		1
+u		1
+J		1
+l		2
+r		1
+a		2
+
+*/

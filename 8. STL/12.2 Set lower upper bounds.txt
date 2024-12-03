@@ -1,0 +1,73 @@
+#include <bits/stdc++.h>
+#include <ext/pb_ds/assoc_container.hpp>
+#include <ext/pb_ds/tree_policy.hpp>
+
+using namespace std;
+using namespace __gnu_pbds;
+
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    cout.tie(NULL);
+
+    int n, a, x; cin >> n;
+    set <int> s;
+
+    while (n--) {
+        cin >> a;
+        s.insert(a);
+    }
+
+    cin >> x;
+
+    cout << "Set: ";
+    for (auto i : s) cout << i << ' ';
+    
+    cout << endl;
+
+    if (*s.lower_bound(x) != *s.end() and *s.upper_bound(x) == *s.end())
+        cout << x << " is the last number" << endl;
+    else if (*s.lower_bound(x) == *s.end())
+        cout << x << " doesn't exist in the set" << endl;
+    else {
+        cout << "\nLowerBound of " << x << ": " << *s.lower_bound(x);
+        cout << "\nUpperBound of " << x << ": " << *s.upper_bound(x);
+    }
+
+    return 0;
+}
+
+
+/*
+
+Input
+5
+1 3 4 5 6
+6
+
+Output
+Set: 1 3 4 5 6 
+6 is the last number
+
+Input
+5
+1 3 4 5 6
+2
+
+Output
+Set: 1 3 4 5 6 
+
+LowerBound of 2: 3
+UpperBound of 2: 3
+
+Input
+5
+1 3 4 5 6
+9
+
+Output
+Set: 1 3 4 5 6 
+9 doesn't exist in the set
+
+*/

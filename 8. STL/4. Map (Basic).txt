@@ -1,0 +1,80 @@
+#include <bits/stdc++.h>
+
+using namespace std ;
+
+int main()
+{
+    ios_base::sync_with_stdio(false) ;
+    cin.tie(NULL) ;
+    cout.tie(NULL) ;
+
+    // Map sorts everything by itself (by key) by default
+
+    map <string, int> mp1 ;
+
+    mp1.insert ({{"Max", 98}, {"Harry", 78}, {"Zendaya", 80}}) ; // Inerting all at a time
+
+    // Creating an Iterator
+    map <string, int> :: iterator itr ;
+
+    for (itr = mp1.begin(); itr != mp1.end(); itr++) {
+        cout << (*itr).first << " " << (*itr).second << endl;
+    }
+
+    // This will print 
+    // Harry 78
+    // Max 98
+    // Zendaya 80
+
+    cout << endl ;
+
+    // *******************************************
+
+    map <int, int> mp2 ;
+
+    // Way 1 of taking inputs in a map: mp2.insert ({1, 10}) ;
+    // Way 2 of taking inputs in a map: mp2[1] = 10 ;
+
+    mp2.insert ({5, 50}) ;
+    mp2.insert ({3, 80}) ;
+    mp2.insert ({1, 70}) ;
+    mp2.insert ({4, 90}) ;
+    mp2.insert ({2, 30}) ;
+
+    for (auto &i : mp2) {
+        cout << i.first << " " << i.second << endl ;
+    }
+
+    // This will print
+    // 1 70
+    // 2 30
+    // 3 80
+    // 4 90
+    // 5 50
+
+    // Accessing a sepecific key value
+    cout << "\n" << mp2[1] << endl; // Here 1 is a key not index
+
+    // *******************************************
+
+    map <string, int> mp3 ;
+    string name ;
+    int howmany, marks ;
+    cout << "Enter how many students do you have: " ;
+    cin >> howmany ;
+
+    for (int i = 0; i < howmany; i++) {
+        cout << "Enter the name: " ;
+        cin >> name ;
+        cout << "Enter his/her marks: " ;
+        cin >> marks ;
+
+        mp3.insert (make_pair(name, marks)) ;
+    }
+
+    for (auto &i : mp3) {
+        cout << i.first << " " << i.second << endl ;
+    }
+
+    return 0 ;
+}

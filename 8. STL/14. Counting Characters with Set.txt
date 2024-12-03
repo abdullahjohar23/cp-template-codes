@@ -1,0 +1,45 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    cout.tie(NULL);
+
+    string str;
+    int n;
+    cin >> n >> str;
+    
+    cout << "Characters Frequency" << endl;
+
+    map <char, int> mp;
+    
+    for(int i = 0; i < n; i++) {
+        mp[str[i]]++;  // map.first is a character, map.second is frequency for that character; 
+    }
+
+    for(auto it : mp) {
+        cout << it.first << "\t   " << it.second << endl;
+    }
+
+    return 0;
+}
+
+/*
+
+Input
+8
+abdullah
+
+Output
+Characters Frequency
+a	       2
+b	       1
+d	       1
+h	       1
+l	       2
+u	       1
+
+*/

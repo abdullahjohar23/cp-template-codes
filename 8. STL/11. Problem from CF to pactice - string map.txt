@@ -1,0 +1,49 @@
+// Problem Link: https://codeforces.com/contest/4/problem/C
+
+#include <bits/stdc++.h>
+#include <ext/pb_ds/assoc_container.hpp>
+#include <ext/pb_ds/tree_policy.hpp>
+
+using namespace std;
+using namespace __gnu_pbds;
+
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    cout.tie(NULL);
+
+    map <string, int> mp;
+	string s;
+	int t;
+	cin >> t;
+    
+	while (t--) {
+		cin >> s;
+		
+        if (mp.find(s) == mp.end()) {
+			cout << "OK" << endl;
+			mp[s] = 0;
+		} else {
+			mp[s]++;
+			cout << s << mp[s] << endl;
+		}
+	}
+    
+    return 0 ;
+}
+
+
+**************
+Input
+4
+abacaba
+acaba
+abacaba
+acab
+
+Output
+OK
+OK
+abacaba1
+OK

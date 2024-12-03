@@ -1,0 +1,61 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    cout.tie(NULL);
+
+    // These methods are same for other stl
+
+    int n, a; cin >> n;
+    set <int> s;
+    set <int> :: iterator it; // this is an iterator
+
+    for (int i = 0; i < n; i++) {
+        cin >> a;
+        s.insert(a);
+    }
+
+    cout << "Method 1 (Using Ranged Based): " << endl;
+    for (auto i : s) {
+        cout << i << " ";
+    }
+
+    cout << "\nMethod 2 (Using Iterator with 'auto'): " << endl;
+    for (auto i = s.begin(); i != s.end(); i++) {
+        cout << *i << " " ;
+    }
+
+    cout << "\nMethod 3 (Using Iterator with ':: iterator'): " << endl;
+    for (it = s.begin(); it != s.end(); it++) {
+        cout << *it << " " ;
+    }
+
+    cout << "\nMethod 4 Reverse Printing: " << endl;
+    for (auto i = s.rbegin(); i != s.rend(); i++) {
+        cout << *i << " " ;
+    }
+
+    return 0;
+}
+
+/*
+
+Input
+12
+3 1 4 3 4 2 5 4 1 5 4 5
+
+Output
+Method 1 (Using Ranged Based): 
+1 2 3 4 5 
+Method 2 (Using Iterator with 'auto'): 
+1 2 3 4 5 
+Method 3 (Using Iterator with ':: iterator'): 
+1 2 3 4 5 
+Method 4 Reverse Printing: 
+5 4 3 2 1
+
+*/

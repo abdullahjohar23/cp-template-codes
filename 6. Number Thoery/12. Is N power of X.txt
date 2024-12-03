@@ -1,0 +1,48 @@
+#include <bits/stdc++.h>
+#include <ext/pb_ds/assoc_container.hpp>
+#include <ext/pb_ds/tree_policy.hpp>
+
+using namespace std;
+using namespace __gnu_pbds;
+
+bool is_N_power_of_X (int n, int x) {
+    if (n <= 0) return false;
+    while (n % x == 0)  n /= x;
+    return n == 1;
+}
+
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    cout.tie(NULL);
+
+    int t;
+    cin >> t;
+
+    while (t--) {
+        int n, x; cin >> n >> x;
+        cout << ((is_N_power_of_X(n, x) == true) ? "Yes" : "No") << endl;
+    }
+
+    return 0;
+}
+
+/*
+
+Input
+5
+25 5
+36 6
+10 3
+16 2
+25 4
+
+Output
+Yes
+Yes
+No
+Yes
+No
+
+*/

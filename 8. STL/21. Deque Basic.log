@@ -1,0 +1,38 @@
+#include <bits/stdc++.h>
+
+using namespace std ;
+
+int main()
+{
+    ios_base::sync_with_stdio(false) ;
+    cin.tie(NULL) ;
+    cout.tie(NULL) ;
+
+    // You can't access the individual elements of the deque
+
+    deque <int> deq ;
+    int x ;
+
+    // Taking 5 Inputs in Deque
+    for (int i = 0; i < 5; i++) {
+        cin >> x ; // 2 3 4 5 6 take these as inputs
+        deq.push_front(x) ;
+    }
+
+    deq.push_front(1) ;  // Adding 1 to the front of the deque
+    deq.push_back(7)  ; // Adding 7 to the last  of the deque
+
+    cout << deq.front() << endl ;  // This will print the first element
+    cout << deq.back()  << endl ; // This will print the last  element
+
+    deq.pop_front() ; // Removing the first element
+    deq.pop_back()  ; // Removing the last  element
+
+    // Printing the Deque elements
+    while (deq.empty() == false) {
+        cout << deq.front() << endl ;
+        deq.pop_front() ;
+    }
+
+    return 0 ;
+}

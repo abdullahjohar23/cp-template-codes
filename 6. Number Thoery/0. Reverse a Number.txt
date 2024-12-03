@@ -1,0 +1,38 @@
+#include <bits/stdc++.h>
+#include <ext/pb_ds/assoc_container.hpp>
+#include <ext/pb_ds/tree_policy.hpp>
+
+using namespace std;
+using namespace __gnu_pbds;
+
+int reverse (int n) {
+    int ans = 0;
+
+    while (n) {
+        ans = (ans *10) + (n % 10);
+        n /= 10;
+    }
+    return ans;
+}
+
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    cout.tie(NULL);
+
+    int n;
+    cin >> n;
+    cout << reverse(n) << endl;
+
+    return 0;
+}
+
+/*
+
+Input   Output
+101     101
+102     201
+-10      -1
+
+*/

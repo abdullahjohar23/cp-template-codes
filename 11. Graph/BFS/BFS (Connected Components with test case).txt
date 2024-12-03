@@ -1,0 +1,81 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+vector <int> dis;
+vector <vector<int>> graph;
+
+void bfs (int source) {
+    queue <int> q;
+
+    dis[source] = 0;
+    q.push(source);
+
+    while (!q.empty()) {
+        int u = q.front();
+        q.pop();
+
+        for (int i = 0; i < graph[u].size(); i++) {
+            int v = graph[u][i];
+            
+            if (dis[v] == -1) {
+                dis[v] = dis[u] + 1;
+                q.push(v);
+            }
+        }
+    }
+}
+
+int main() 
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    cout.tie(NULL);
+
+    int t, n, m, x, y, comp;
+    cin >> t;
+
+    while (t--) {
+        cin >> n >> m;
+
+        graph = vector <vector<int>> (n);
+        dis = vector <int> (n, -1);
+        
+        while (m--) {
+            cin >> x >> y;
+            graph[x].push_back(y);
+            graph[y].push_back(x);
+        }
+
+        bfs(0);
+        comp = 1;
+
+        for (int i = 1; i < n; i++) {
+            if (dis[i] == -1) {
+                bfs(i);
+                comp++;
+            }
+        }
+
+        cout << comp <<endl;
+    }
+
+    return 0;
+}
+
+/*
+
+Input
+2
+
+4 2
+0 1
+0 2
+
+8 0
+
+Output
+2
+8
+
+*/

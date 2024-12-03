@@ -1,0 +1,27 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main()
+{
+    ios_base::sync_with_stdio(false);
+
+    int n, arr[100];
+    cin >> n;
+
+    // Taking the inputs
+    for(int i = 0; i < n; i++){
+        cin >> arr[i];
+    }
+
+    // Printing the SubArrays of an Array
+    for (int i = 0; i < n; i++) {
+        for (int j = i; j < n; j++) {
+            for (int k = i; k <= j; k++) {
+                    cout << arr[k] << " ";
+            } cout << endl;
+        } cout << endl;
+    }
+
+    return 0;
+}

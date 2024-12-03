@@ -1,0 +1,43 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    cout.tie(NULL);
+
+    int n; cin >> n;
+    int arr[n];
+    
+    map <int, int> mp;
+
+    cout << "Elements Frequency" << endl;
+    
+    for(int i = 0; i < n; i++) {
+        cin >> arr[i];
+        mp[arr[i]]++;  // map.first is an element, map.second is frequency for that element; 
+    }
+
+    for(auto it : mp) {
+        cout << it.first << "\t " << it.second << endl;
+    }
+
+    return 0;
+}
+
+/*
+
+Input
+10
+1 2 3 1 2 1 1 1 4 4
+
+Output
+Elements Frequency
+1	     5
+2	     2
+3	     1
+4	     2
+
+*/
